@@ -90,6 +90,7 @@ export default class CalculatorCore {
         if (!this.validateExpr(lastExpr, expr)) { return; }
 
         this.processExpr(lastExpr, expr); // 处理输入的表达式，根据上下文进行必要的转换（如自动负号、隐式括号等），并将其添加到表达式列表中
+        console.log(this.getExprs());
     }
 
     getLastExpr() {
@@ -100,7 +101,7 @@ export default class CalculatorCore {
         if (
             (lastExpr.willLookAhead && !expr.canProvideBehind) ||
             (expr.willLookBehind && !lastExpr.canProvideAhead) || // 检查当前输入的表达式是否与前一个表达式在语法上兼容（如数字后不能直接跟另一个数字，运算符后必须跟数字或括号等）
-            (expr instanceof RightParen && this.parensStack[this.parensStack.length - 1] !== '(') || // 检查右括号是否与最近的左括号匹配
+            (expr instanceof RightParen && this.parensStack.length === 0) || // 检查右括号是否与最近的左括号匹配
             (expr instanceof ImplicitRightParen && this.parensStack[this.parensStack.length - 1] !== '{') || // 检查隐式右括号是否与最近的隐式左括号（事实上只有根号才会添加一个耦合的隐式左括号）匹配
             (expr instanceof Dot && !(lastExpr instanceof Num)) ||
             (lastExpr instanceof Dot && !(expr instanceof Num)) || // 小数点必须连接在数字之间

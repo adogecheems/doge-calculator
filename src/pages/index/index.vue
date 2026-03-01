@@ -1,8 +1,11 @@
 <template>
     <div>
-        <div class="display">
-            <IconButton :icon="require('../../assets/back.png')" @click="back" />
-            <IconButton style="margin-left: 5vh;" :icon="require('../../assets/info.png')" @click="openInfo" />
+        <div v-if="loading" style="justify-content: center; align-items: center; height: 100vh;">
+            <text class="loading">正在准备运算模块...</text>
+        </div>
+        <div v-else class="display">
+            <IconButton :icon="require('../../assets/back.png?base64')" @click="back" />
+            <IconButton style="margin-left: 5vh;" :icon="require('../../assets/info.png?base64')" @click="openInfo" />
             <div style="flex: 1;" />
             <text :style="{ color: textColor }" class="display-text">{{ display }}</text>
         </div>
@@ -41,6 +44,7 @@ export default {
     data() {
         return {
             c,
+            loading: true,
             emptyObject: {},
             textColor: textColors.normal,
             core: new CalculatorCore(),
@@ -79,7 +83,8 @@ export default {
         onShow() {
             setTimeout(() => {
                 this.core.warmUp();
-            }, 0);
+                this.loading = false;
+            }, 100);
         }
     },
 };
@@ -87,6 +92,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../../styles/md-color.less';
+
+.loading {
+    font-size: 10vh;
+    color: @on-primary;
+}
+
 .display {
     width: 100vw;
     height: 30vh;

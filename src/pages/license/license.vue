@@ -1,7 +1,7 @@
 <template>
     <div style="flex-direction: row;">
         <ButtonColumn>
-            <IconButton class="button" :icon="require('../../assets/back.png')" @click="back" />
+            <IconButton class="button" :icon="require('../../assets/back.png?base64')" @click="back" />
         </ButtonColumn>
         <scroller class="scroller" over-scroll="50px" over-fling="50px">
             <text class="title">许可证</text>
@@ -22,7 +22,7 @@
 
 .license {
     width: 80%;
-    color: @neutral;
+    color: @on-primary;
     font-size: 10vh;
 }
 </style>
