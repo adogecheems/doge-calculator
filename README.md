@@ -69,6 +69,10 @@ npm install
 npm run build:prod
 ```
 
+#### 关于Node.js版本
+
+由于框架本身的缺陷，如果你的本机node版本为22或更高，可能会在构建时出现如[#4](https://github.com/adogecheems/doge-calculater/issues/4)所示的错误。解决方法是使用nvm切换到node 16|18|20版本，或者直接安装一个较旧版本的node。
+
 编译完成后，在项目根目录下会出现 amr 文件，按上文一样操作即可安装
 
 ## 关于
