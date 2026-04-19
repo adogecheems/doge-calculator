@@ -7,7 +7,7 @@ import { create, all } from 'mathjs';
 
 const math = create(all, {
   number: 'number',
-  precision: 64
+  precision: 64,
 });
 
 const _sin = math.sin;

@@ -3,5 +3,10 @@
     "index": "pages/index/index.vue",
     "info": "pages/info/info.vue",
     "license": "pages/license/license.vue"
+  },
+  "options": {
+    "alias": {
+      "crypto": "src/mock.js"
+    }
   }
 }
