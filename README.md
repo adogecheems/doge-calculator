@@ -9,7 +9,7 @@
 - 可访问高级数学函数 ✅
 - 响应式设计，适配不同词典笔屏幕尺寸 ⏭️
 - 拥有高健壮性的内核，有效阻止各种错误输入 💪
-- 低依赖性 -- 纯原生实现，无需任何 jsapi 编译作业，直接安装 ✌
+- 无依赖性 -- 纯原生实现，无需任何 jsapi 编译作业，直接安装 ✌
 
 ## 预览
 
@@ -78,7 +78,6 @@ npm run build:prod
 ## 关于
 
 作者：adogecheems  
-使用的依赖：`mathjs`, `fs(haasui 原生)`  
 许可证：AGPLv3
 
 "Doge" 是“词典笔 OS 通用生态系统”的意思 (Dictpen OS Generic Ecosystem) 🐶
