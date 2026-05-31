@@ -4,9 +4,11 @@
             <text class="loading">正在准备运算模块...</text>
         </div>
         <div v-else class="display">
-            <IconButton :icon="require('../../assets/back.png?base64')" @click="back" />
-            <IconButton style="margin-left: 5vh;" :icon="require('../../assets/info.png?base64')" @click="openInfo" />
-            <div style="flex: 1;" />
+            <div style="flex-direction: row;">
+                <IconButton :icon="require('../../assets/back.png?base64')" @click="back" />
+                <IconButton style="margin-left: 5vh;" :icon="require('../../assets/info.png?base64')"
+                    @click="openInfo" />
+            </div>
             <text :style="{ color: textColor }" class="display-text">{{ display }}</text>
         </div>
         <div class="keyboard">
@@ -119,6 +121,7 @@ export default {
 
 .display-text {
     font-size: 15vh;
+    text-align: right;
     lines: 1;
 }
 </style>
