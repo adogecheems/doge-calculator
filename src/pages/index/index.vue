@@ -3,14 +3,16 @@
         <div v-if="loading" style="justify-content: center; align-items: center; height: 100vh;">
             <text class="loading">正在准备运算模块...</text>
         </div>
-        <div v-else class="display">
-            <div style="flex-direction: row;">
-                <IconButton :icon="require('../../assets/back.png?base64')" @click="back" />
-                <IconButton style="margin-left: 5vh;" :icon="require('../../assets/info.png?base64')"
-                    @click="openInfo" />
+        <scroller scroll-direction="horizontal" show-scrollbar="false" v-else class="display">
+            <div class="buttons">
+                <IconButton style="margin-right: 5vh;" :icon="require('../../assets/back.png?base64')" @click="back" />
+                <IconButton :icon="require('../../assets/info.png?base64')" @click="openInfo" />
             </div>
-            <text :style="{ color: textColor }" class="display-text">{{ display }}</text>
-        </div>
+            <div style="flex-direction: row;">
+                <text :style="{ color: textColor }" class="display-text">{{ display }}</text>
+                <div style="margin-right: 7vh;" ref="end" />
+            </div>
+        </scroller>
         <div class="keyboard">
             <div class="line"><Button v-for="key in keyMap.line1" :key="key.sign" :text="key.text" :expr="key.expr"
                     :color="key.color" @click="click" /></div>
@@ -28,8 +30,8 @@
 <script>
 import Button from '../../components/button.vue';
 import IconButton from '../../components/icon-button.vue';
-import CalculatorCore from '../../core';
-import { c, defaultKeyMap, invKeyMap } from '../../key-map';
+import CalculatorCore from '../../utils/core.js';
+import { c, defaultKeyMap, invKeyMap } from '../../utils/key-map.js';
 
 const textColors = {
     normal: '#e3e3e3',
@@ -50,6 +52,7 @@ export default {
             emptyObject: {},
             textColor: textColors.normal,
             core: new CalculatorCore(),
+            offset: 'none',
         };
     },
     computed: {
@@ -66,14 +69,15 @@ export default {
         click(expr) {
             this.textColor = textColors.normal;
             this.core.input(expr);
+            setTimeout(() => {
+                this.$page.$dom.scrollToElement(this.$refs.end);
+            }, 25);
         },
         evaluate() {
-            switch (this.core.evaluate()) {
-                case true:
-                    this.textColor = textColors.suc;
-                    break;
-                case false:
-                    this.textColor = textColors.err;
+            if (this.core.evaluate()) {
+                this.textColor = textColors.suc;
+            } else {
+                this.textColor = textColors.err;
             }
         },
         openInfo() {
@@ -104,10 +108,15 @@ export default {
 .display {
     width: 100vw;
     height: 30vh;
-    padding: 2.5vh 7vh 0 5vh;
+    padding: 2.5vh 0 0 5vh;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+}
+
+.buttons {
+    flex-direction: row;
+    margin-right: 5vh;
 }
 
 .keyboard {

@@ -6,7 +6,7 @@
   },
   "options": {
     "alias": {
-      "crypto": "src/mock.js"
+      "crypto": "src/utils/mock.js"
     }
   }
 }
