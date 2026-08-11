@@ -15,10 +15,10 @@
 ## 预览
 
 1024x240(A7 pro):
-![1024x240(A7 pro)](https://cdn.mmoe.work/public/doge-calculator/1024*240.png)
+![1024x240(A7 pro)](https://cdn.mmoe.work/public/doge-calculator/1024x240.png)
 
 560x170(S6 pro):
-![560x170(S6 pro)](https://cdn.mmoe.work/public/doge-calculator/560*170.png)
+![560x170(S6 pro)](https://cdn.mmoe.work/public/doge-calculator/560x170.png)
 
 ## 实机
 
